@@ -1,7 +1,7 @@
 import Home from '~/pages/Home';
 import Following from '~/pages/Following';
 import Upload from '~/pages/Upload';
-import { HeaderOnly } from '~/components/Layout';
+import { HeaderOnly } from '~/components/Layouts';
 // public routers
 // layout_non_property => DefaultLayout, null=> Fragment, layout=> layout
 const publicRouters = [
