@@ -4,6 +4,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,700;1,500&display=swap');
 
 :root {
+	// COLORS
+	--search-background: rgb(22 24 35 / 6%);
+	--black: #000;
+	--text-color: #333;
+
+	// SIZES
 	--default-layout-header-height: 60px;
 	--default-layout-container-width: 1150px;
 	--sidebar-default-width: 356px;
@@ -25,4 +31,17 @@ body {
 	font-size: 1.6rem; // trả về font size mặc định 16px
 	line-height: 1.5;
 	text-rendering: optimizeSpeed; // thuộc tính khi load font thì làm cho hiển thị render text nhanh nhất có thể
+	text-color: var(--text-color);
+}
+
+button,
+input,
+[tabindex] {
+	outline: none;
+	border: none;
+}
+
+a[href] {
+	color: var(--text-color);
+	text-decoration: none;
 }

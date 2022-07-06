@@ -1,4 +1,15 @@
 .wrapper {
+	// variables
+	--search-width: 361px;
+	--search-height: 46px;
+	--search-radius: 92px;
+	--search-btn-width: 52px;
+	--search-spliter-top: 9px;
+	--search-spliter-color: rgb(22 24 35 / 12%);
+	--search-btn-hover-color: rgb(22 24 35 / 3%);
+	--search-btn-active-color: rgb(22 24 35 / 6%);
+
+	//
 	width: 100%;
 	height: var(--default-layout-header-height);
 	box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
@@ -10,4 +21,83 @@
 .inner {
 	width: var(--default-layout-container-width);
 	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.logo {
+}
+
+.search {
+	width: var(--search-width);
+	height: var(--search-height);
+	padding-left: 16px;
+	display: flex;
+	position: relative;
+	background-color: var(--search-background);
+	border-radius: var(--search-radius);
+	border: 1.5px solid transparent;
+
+	input {
+		height: 100%;
+		padding: 12px 0;
+		flex: 1;
+		color: var(--black);
+		background-color: transparent;
+		font-size: 1.6rem;
+		line-height: 2.2rem;
+		caret-color: red; //
+	}
+
+	input:not(:placeholder-shown) ~ .search-btn {
+		color: rgba(22, 24, 35, 0.75);
+	}
+
+	&::after {
+		content: "";
+		width: 0.5px;
+		height: calc(var(--search-height) - var(--search-spliter-top)*2);
+		position: absolute;
+		background-color: var(--search-spliter-color);
+		top: var(--search-spliter-top);
+		right: var(--search-btn-width);
+	}
+
+	&:focus-within {
+		border-color: rgba(22, 24, 35, 0.2);
+	}
+}
+
+.clear,
+.loading {
+	position: absolute;
+	right: calc(var(--search-btn-width) + 16px);
+	top: 50%;
+	transform: translateY(-50%);
+	color: rgba(22, 24, 35, 0.34);
+	font-size: 14.67px;
+}
+
+.search-btn {
+	width: var(--search-btn-width);
+	height: 100%;
+	background: transparent;
+	font-size: 18.84px;
+	border-top-right-radius: var(--search-radius);
+	border-bottom-right-radius: var(--search-radius);
+	color: rgb(176 176 180);
+
+	&:hover {
+		background-color: var(--search-btn-hover-color);
+		cursor: pointer;
+	}
+
+	&:active {
+		background-color: var(--search-btn-active-color);
+		cursor: pointer;
+	}
+}
+
+.actions {
 }
