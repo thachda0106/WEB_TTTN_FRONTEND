@@ -1,3 +1,35 @@
-.wrapper {
+.wrapperr {
 	width: var(--sidebar-default-width);
+	.container {
+		min-width: 220px;
+	}
+	.breadcrumb {
+		padding: 5px;
+		font-size: 18px;
+		font-weight: 500;
+		color: #0000009c;
+		padding: 10px 0;
+	}
+}
+
+.categories {
+	border: 1px solid rgb(224, 224, 224);
+	cursor: pointer;
+	border-radius: 4px;
+	line-height: 1rem;
+	padding: 0.4rem 0.75rem;
+	text-align: center;
+	color: rgb(130, 134, 158);
+	padding: 6.4px 12px;
+	.icon {
+		height: 20px;
+		width: 20px;
+	}
+	span {
+		color: #82869e;
+		font-size: 14px;
+	}
+	&:hover {
+		background-color: rgb(245, 245, 245);
+	}
 }
