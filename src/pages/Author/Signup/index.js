@@ -15,6 +15,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Functions } from '~/utils/Function';
 import { register } from '~/apiServices/accountServices';
 import { useNavigate } from 'react-router-dom';
+import { Breadcrumbs } from '@mui/material';
 const theme = createTheme();
 
 export default function SignUp() {
@@ -67,6 +68,14 @@ export default function SignUp() {
 	};
 	return (
 		<ThemeProvider theme={theme}>
+			<Breadcrumbs className={'breadcrumb'} aria-label="breadcrumb">
+				<Link underline="hover" color="inherit" to="/">
+					Home
+				</Link>
+				<p underline="hover" color="text.primary" aria-current="page">
+					Register
+				</p>
+			</Breadcrumbs>
 			<Container component="main" maxWidth="xs">
 				<CssBaseline />
 				<Box

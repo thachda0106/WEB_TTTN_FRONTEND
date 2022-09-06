@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import {
 	Edit,
 	EditButton,
@@ -70,7 +71,10 @@ const VoucherList = (props) => {
 
 const validateEnd = (value) => {
 	let now = new Date().getTime();
+	let dayStart = localStorage.getItem('dayStart');
+	if (!dayStart) return 'Ngày kết thúc >= ngày bắt đầu!';
 	let dateEnd = new Date(value).getTime();
+	if (dateEnd < new Date(dayStart).getTime()) return 'Ngày kết thúc >= ngày bắt đầu!';
 	if (dateEnd < now) return 'Ngày kết thúc không hợp lệ!';
 	return undefined;
 };
@@ -81,6 +85,8 @@ const validateStart = (value) => {
 	return undefined;
 };
 const EditVoucher = (props) => {
+	localStorage.removeItem('dayStart');
+	console.log({ props });
 	return (
 		<Edit {...props}>
 			<SimpleForm>
@@ -111,7 +117,7 @@ const EditVoucher = (props) => {
 					/>
 				</Labeled>
 				<DateTimeInput label="Ngày bắt đầu" source="dateStart" showTime />
-				<DateTimeInput validate={validateEnd} label="Ngày kết thúc" source="dateEnd" showTime />
+				<DateTimeInput label="Ngày kết thúc" source="dateEnd" showTime />
 			</SimpleForm>
 		</Edit>
 	);
@@ -141,6 +147,7 @@ const PostCreateToolbar = () => {
 	);
 };
 const CreateVoucher = (props) => {
+	localStorage.removeItem('dayStart');
 	return (
 		<Create {...props}>
 			<SimpleForm toolbar={<PostCreateToolbar />}>
@@ -170,6 +177,9 @@ const CreateVoucher = (props) => {
 					validate={validateStart}
 					label="Ngày bắt đầu "
 					source="dateStart"
+					onChange={(e) => {
+						localStorage.setItem('dayStart', e.target.value);
+					}}
 					showTime
 				/>
 				<DateTimeInput

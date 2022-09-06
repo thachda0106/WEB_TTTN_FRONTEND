@@ -129,7 +129,16 @@ const DashBoard = () => {
 			</h1>
 			<div className="container flex flex-col-reverse  gap-7 ">
 				<div>
-					<h3>Báo cáo doanh thu</h3>
+					<h3>
+						Báo cáo doanh thu từ ngày{' '}
+						{`${new Date(dayStart).getDate()}-${new Date(dayStart).getMonth() + 1}-${new Date(
+							dayStart
+						).getFullYear()} `}{' '}
+						đến{' '}
+						{`${new Date(dayEnd).getDate()}-${new Date(dayEnd).getMonth() + 1}-${new Date(
+							dayEnd
+						).getFullYear()} `}
+					</h3>
 					<LocalizationProvider dateAdapter={AdapterDayjs}>
 						<div className="flex flex-row items-center  gap-1 ">
 							<DesktopDatePicker
@@ -229,7 +238,7 @@ const DashBoard = () => {
 					</h3>
 				</div>
 				<div>
-					<h3>Thống kê doanh thu</h3>
+					<h3>Thống kê doanh thu năm {new Date(year).getFullYear()} </h3>
 					<LocalizationProvider dateAdapter={AdapterDayjs}>
 						<div className="flex flex-row items-center  gap-1 ">
 							<DatePicker

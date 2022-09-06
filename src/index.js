@@ -26,12 +26,7 @@ const GlobalEvent = ({ children }) => {
 			dispatch(setDataAction);
 		};
 		loadingData();
-
-		// //
 		const handleCheckSessionLogin = async () => {
-			// if(!loginStore.login.isLogin){
-
-			// }
 			if (document.cookie.includes('token')) {
 				let rest = await checkSessionLogin();
 				if (rest.status === 200) {

@@ -10,8 +10,9 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { resetPassword } from '~/apiServices/accountServices';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Functions } from '~/utils/Function';
+import { Breadcrumbs } from '@mui/material';
 const theme = createTheme();
 export default function SignIn() {
 	// const loginStore = useSelector((state) => state.login);
@@ -32,6 +33,14 @@ export default function SignIn() {
 	};
 	return (
 		<ThemeProvider theme={theme}>
+			<Breadcrumbs className={'breadcrumb'} aria-label="breadcrumb">
+				<Link underline="hover" color="inherit" to="/">
+					Home
+				</Link>
+				<p underline="hover" color="text.primary" aria-current="page">
+					Forgot Password
+				</p>
+			</Breadcrumbs>
 			<Container component="main" maxWidth="xs">
 				<CssBaseline />
 				<Box
