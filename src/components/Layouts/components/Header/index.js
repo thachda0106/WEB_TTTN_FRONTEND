@@ -77,7 +77,9 @@ const Header = () => {
 									{appStore.categories.map((category) => {
 										return (
 												
-											<div onClick = {()=>{
+											<div
+											 key={category.categoryID}
+											 onClick = {()=>{
 												let filterAdvanced = {
 												asc: true,
 												desc: true,

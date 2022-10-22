@@ -72,7 +72,7 @@ const VoucherList = (props) => {
 const validateEnd = (value) => {
 	let now = new Date().getTime();
 	let dayStart = localStorage.getItem('dayStart');
-	if (!dayStart) return 'Ngày kết thúc >= ngày bắt đầu!';
+	if (!dayStart) return undefined;
 	let dateEnd = new Date(value).getTime();
 	if (dateEnd < new Date(dayStart).getTime()) return 'Ngày kết thúc >= ngày bắt đầu!';
 	if (dateEnd < now) return 'Ngày kết thúc không hợp lệ!';
@@ -81,12 +81,34 @@ const validateEnd = (value) => {
 const validateStart = (value) => {
 	let now = new Date().getTime();
 	let dateStart = new Date(value).getTime();
-	if (dateStart < now) return 'Ngày bắt đầu không hợp lệ!';
+	if (dateStart <= now) return 'Ngày bắt đầu phải >= thời gian hiện tại!';
+	return undefined;
+};
+
+const validateCreateEnd = (value) => {
+	if (value === undefined) {
+		return 'Ngày kết thúc không hợp lệ!';
+	}
+	let now = new Date().getTime();
+	let dayStart = localStorage.getItem('dayStart');
+	if (!dayStart) return 'Ngày kết thúc >= ngày bắt đầu!';
+	let dateEnd = new Date(value).getTime();
+	if (dateEnd < new Date(dayStart).getTime()) return 'Ngày kết thúc >= ngày bắt đầu!';
+	if (dateEnd < now) return 'Ngày kết thúc không hợp lệ!';
+	return undefined;
+};
+const validateCreateStart = (value) => {
+	if (value === undefined) {
+		return 'Ngày bắt đầu không hợp lệ!';
+	}
+	let now = new Date().getTime();
+	let dateStart = new Date(value).getTime();
+	console.log({ dateStart, value });
+	if (dateStart <= now) return 'Ngày bắt đầu không hợp lệ!';
 	return undefined;
 };
 const EditVoucher = (props) => {
 	localStorage.removeItem('dayStart');
-	console.log({ props });
 	return (
 		<Edit {...props}>
 			<SimpleForm>
@@ -116,8 +138,16 @@ const EditVoucher = (props) => {
 						source="maxDiscountValue"
 					/>
 				</Labeled>
-				<DateTimeInput label="Ngày bắt đầu" source="dateStart" showTime />
-				<DateTimeInput label="Ngày kết thúc" source="dateEnd" showTime />
+				<DateTimeInput
+					onChange={(e) => {
+						localStorage.setItem('dayStart', e.target.value);
+					}}
+					validate={validateStart}
+					label="Ngày bắt đầu"
+					source="dateStart"
+					showTime
+				/>
+				<DateTimeInput validate={validateEnd} label="Ngày kết thúc" source="dateEnd" showTime />
 			</SimpleForm>
 		</Edit>
 	);
@@ -174,7 +204,7 @@ const CreateVoucher = (props) => {
 				<NumberInput className="refInput" label="Giá trị tối đa" source="maxDiscountValue" />
 				<DateTimeInput
 					className="refInput"
-					validate={validateStart}
+					validate={validateCreateStart}
 					label="Ngày bắt đầu "
 					source="dateStart"
 					onChange={(e) => {
@@ -184,7 +214,7 @@ const CreateVoucher = (props) => {
 				/>
 				<DateTimeInput
 					className="refInput"
-					validate={validateEnd}
+					validate={validateCreateEnd}
 					label="Ngày kêt thúc "
 					source="dateEnd"
 					showTime

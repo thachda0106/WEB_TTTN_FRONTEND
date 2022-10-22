@@ -72,7 +72,7 @@ const OrderItem = ({ order }) => {
 				<div className={cx('container px-5 pt-4  flex justify-between ')}>
 					<div className={cx('content')}>
 						<div className={cx('flex items-center text-center ')}>
-							<p className={cx('text-2xl font-medium ')}>Mã đơn hàng #{orderShow.orderID}</p>
+							<p className={cx('text-2xl font-semibold ')}>Mã đơn hàng #{orderShow.orderID}</p>
 							<span className={cx('text-xl font-medium ml-4 ')}>
 								{Functions.timestampToDateTime(new Date(orderShow.dateCreate).getTime())}
 							</span>
@@ -105,6 +105,9 @@ const OrderItem = ({ order }) => {
 								)}
 							</span>
 						</p>
+						<div className={cx('text-2xl font-normal')}>
+							{order.isPay && <p className={cx('text-xl font-medium ')}>( Đã thanh toán )</p>}
+						</div>
 					</div>
 					{orderShow.orderStatus === 'Chờ duyệt' && (
 						<Button
@@ -212,9 +215,6 @@ const OrderItem = ({ order }) => {
 							</div>
 						);
 					})}
-					<div className={cx('px-5')}>
-						{order.isPay && <p className={cx('text-xl font-medium ')}>( Đã thanh toán )</p>}
-					</div>
 				</Typography>
 			</AccordionDetails>
 		</Accordion>

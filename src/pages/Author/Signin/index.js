@@ -12,7 +12,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { login } from '~/apiServices/accountServices';
 import { getCartByCustomerID } from '~/apiServices/cartServices';
-import { setCustomerVoucher, getVoucherCustomer } from '~/apiServices/voucherServices';
+import { getVoucherCustomer } from '~/apiServices/voucherServices';
 import { actions } from '~/state/slices/loginSlice';
 import { useNavigate } from 'react-router-dom';
 import { Functions } from '~/utils/Function';
@@ -55,7 +55,7 @@ export default function SignIn() {
 		//
 		Functions.showToast('success', 'login success!');
 		let backLink = localStorage.getItem('backLink');
-		if (backLink) {
+		if (backLink || backLink === window.location.href) {
 			navigate(`${backLink}`);
 			localStorage.removeItem('backLink');
 		} else navigate(`/`);

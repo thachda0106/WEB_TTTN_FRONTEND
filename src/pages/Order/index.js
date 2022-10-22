@@ -100,7 +100,7 @@ const Cart = () => {
 			// setIsPending(false);
 			Functions.showToast('success', 'Đặt hàng thành công!');
 			navigate('/my-order');
-		},2000)
+		},500)
 	};
 	if (!loginStore.orderWrap) {
 		return navigate('/cart')

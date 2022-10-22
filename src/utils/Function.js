@@ -139,7 +139,7 @@ export const Functions = {
 	},
 
 	// Cắt ngắn chuỗi đi
-	cropText: (text, length = 25) => {
+	cropText: (text, length = 22) => {
 		if (text.length < length) return text;
 		else return text.slice(0, length - 5) + '...';
 	},
